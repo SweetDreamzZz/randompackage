@@ -1,10 +1,5 @@
 import { AllowArray } from "../Types";
 
-import {
-    ISauceContextHeader,
-    ISauceHeaderIndex
-} from "./SauceHeaderContext";
-
 export interface IContextOptions<
     P,
     Type extends string = string,
@@ -25,6 +20,34 @@ export interface IContextPayload<
     header: H;
 
     data: D;
+};
+
+export interface ISauceHeaderIndexPayload {
+    status: number;
+    parent_id: number;
+    id: number;
+    results: number;
+};
+
+export interface ISauceHeaderIndex {
+    [index_id: string]: ISauceHeaderIndexPayload;
+};
+
+export interface ISauceContextHeader {
+    user_id: string;
+    account_type: string;
+    short_limit: string;
+    long_limit: string;
+    long_remaining: number;
+    short_remaining: number;
+    status: number;
+    results_requested: number;
+    index: ISauceHeaderIndex;
+    search_depth: number;
+    minimum_similarity: number;
+    query_image_display: string;
+    query_image: string;
+    results_returned: number;
 };
 
 export type ContextFactoryPayload<H, D> =

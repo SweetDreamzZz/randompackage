@@ -1,10 +1,9 @@
 import {
     SauceContext,
     ContextFactoryOptions,
-    ContextFactoryPayload 
+    ContextFactoryPayload, 
+    ISauceContextHeader
 } from './SauceContext';
-
-import { ISauceContextHeader } from './SauceHeaderContext';
 
 export type SauceAnimeContextType = 'anime';
 
