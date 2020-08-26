@@ -15,7 +15,7 @@ export interface ISauceHeaderIndex {
     [index_id: string]: ISauceHeaderIndexPayload;
 };
 
-export interface ISauceHeaderPayload {
+export interface ISauceContextHeader {
     user_id: string;
     account_type: string;
     short_limit: string;
@@ -32,10 +32,10 @@ export interface ISauceHeaderPayload {
     results_returned: number;
 };
 
-export type SauceHeaderContextOptions = IContextHeaderOptions<ISauceHeaderPayload>;
+export type SauceHeaderContextOptions = IContextHeaderOptions<ISauceContextHeader>;
 
 class SauceHeaderContext {
-    protected payload: ISauceHeaderPayload;
+    protected payload: ISauceContextHeader;
 
     constructor(options: SauceHeaderContextOptions) {
         this.payload = options.header;

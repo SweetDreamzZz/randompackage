@@ -1,5 +1,10 @@
-import { SauceContext, ContextFactoryOptions } from './SauceContext';
-import { SauceHeaderContext } from './SauceHeaderContext';
+import {
+    SauceContext, 
+    ContextFactoryOptions,
+    ContextFactoryPayload
+} from './SauceContext';
+
+import { ISauceContextHeader } from './SauceHeaderContext';
 
 export type SauceMangaContextType = 'manga';
 
@@ -10,18 +15,19 @@ export type SauceMangaContextSubType =
     | 'madokami'
     | 'mangadex';
 
-export interface ISauceMangaContextPayload {
+export interface ISauceMangaContextData {
     title: string;
     author: string;
     episode: string;
 }
 
 export type ISauceMangaContextOptions = 
-    ContextFactoryOptions<ISauceMangaContextPayload, SauceHeaderContext>;
+    ContextFactoryOptions<ContextFactoryPayload<ISauceContextHeader, ISauceMangaContextData>>;
 
 class SauceMangaContext
     extends SauceContext<
-        ISauceMangaContextPayload,
+        ISauceContextHeader,
+        ISauceMangaContextData,
         SauceMangaContextType,
         SauceMangaContextSubType
     > {
@@ -40,21 +46,21 @@ class SauceMangaContext
      * Returns the title
      */
     public get title() : string {
-        return this.payload.title
+        return this.payload.data.title
     }
 
     /**
      * Returns the author
      */
     public get author() : string {
-        return this.payload.author
+        return this.payload.data.author
     }
 
     /**
      * Returns the episode
      */
     public get episode() : string {
-        return this.payload.episode
+        return this.payload.data.episode
     }
     
 }

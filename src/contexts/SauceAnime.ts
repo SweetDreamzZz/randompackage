@@ -1,5 +1,10 @@
-import { SauceContext, ContextFactoryOptions } from './SauceContext';
-import { SauceHeaderContext } from './SauceHeaderContext';
+import {
+    SauceContext,
+    ContextFactoryOptions,
+    ContextFactoryPayload 
+} from './SauceContext';
+
+import { ISauceContextHeader } from './SauceHeaderContext';
 
 export type SauceAnimeContextType = 'anime';
 
@@ -21,7 +26,7 @@ export interface ISauceAnimeContextDate {
     aired: string;
 };
 
-export interface ISauceAnimeContextPayload {
+export interface ISauceAnimeContextData {
     title: ISauceAnimeContextTitle;
     episode: ISauceAnimeContextEpisodes;
     date: ISauceAnimeContextDate;
@@ -29,11 +34,12 @@ export interface ISauceAnimeContextPayload {
 };
 
 export type SauceAnimeContextOptions = 
-    ContextFactoryOptions<ISauceAnimeContextPayload, SauceHeaderContext>;
+    ContextFactoryOptions<ContextFactoryPayload<ISauceContextHeader, ISauceAnimeContextData>>;
 
 class SauceAnimeContext 
     extends SauceContext<
-        ISauceAnimeContextPayload,
+        ISauceContextHeader,
+        ISauceAnimeContextData,
         SauceAnimeContextType,
         SauceAnimeContextSubType
     > {
@@ -52,7 +58,7 @@ class SauceAnimeContext
      * Returns the titles
      */
     public get title(): ISauceAnimeContextTitle {
-        return this.payload.title;
+        return this.payload.data.title;
     }
 
 
@@ -60,21 +66,21 @@ class SauceAnimeContext
      * Returns the episode
      */
     public get episode(): ISauceAnimeContextEpisodes {
-        return this.payload.episode;
+        return this.payload.data.episode;
     }
 
     /**
      * Returns the date
      */
     public get date(): ISauceAnimeContextDate {
-        return this.payload.date;
+        return this.payload.data.date;
     }
 
     /**
      * Returns the estimate time
      */
     public get estimatedTime(): string {
-        return this.payload.est_time;
+        return this.payload.data.est_time;
     }
 
 }

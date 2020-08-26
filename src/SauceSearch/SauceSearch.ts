@@ -109,11 +109,36 @@ class SauceSearch extends SearchHandler {
 
         const SearchContext = new SauceArtContext({
             payload: {
-                author: 'test',
-                title: 'test',
-                characters: 'test',
-                material: 'test',
-                source: 'test'
+                header: {
+                    user_id: 'test',
+                    account_type: 'test',
+                    short_limit: 'test',
+                    long_limit: 'test',
+                    long_remaining: 1337,
+                    short_remaining: 1337,
+                    status: 0,
+                    results_requested: 1337,
+                    index: {
+                        "0": {
+                            status: 0,
+                            parent_id: 0,
+                            id: 0,
+                            results: 0
+                        }
+                    },
+                    search_depth: 1337,
+                    minimum_similarity: 1337,
+                    query_image_display: 'test',
+                    query_image: '1337',
+                    results_returned: 1337
+                },
+                data: {
+                   title: 'test',
+                   author: 'test',
+                   material: 'test',
+                   characters: ['test', 'test'],
+                   source: 'test' 
+                }
             },
             responseType: 'art'
         });
